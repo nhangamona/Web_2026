@@ -1,19 +1,18 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProdutos } from '../src/context/ProdutosContext';
 import { SecaoProdutos } from '../src/components/SecaoProdutos';
-import { Botao } from '../src/components/Botao';
 
 /**
  * Tela Inicial do Aplicativo.
- * Atende aos requisitos RF3, RT1 e RT2:
- * - Apresenta as listas separadas por "Produtos ativos" e "Produtos inativos".
- * - Cada produto pertence exclusivamente a uma das seções.
- * - Mensagens explicativas claras para seções sem produtos.
- * - Toque no item navega para a rota dinâmica /produtos/[id].
- * - Botão destacado para navegar até o formulário de cadastro.
+ * Design atualizado fiel ao layout solicitado:
+ * - Cabeçalho superior com título e botão "+ Cadastrar Novo Produto" lado a lado
+ * - Subtítulo descritivo logo abaixo do título
+ * - Seções separadas para "Produtos ativos" e "Produtos inativos"
+ * - Grid responsivo de cards com miniatura e badges
+ * - Caixa vazia com borda tracejada e ícone ilustrativo
  */
 export default function TelaInicial() {
   const router = useRouter();
@@ -28,38 +27,48 @@ export default function TelaInicial() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom', 'left', 'right']}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.banner}>
-          <Text style={styles.bannerSubtitulo}>
-            Controle de catálogo e consulta de itens
-          </Text>
-        </View>
+        <View style={styles.conteudoPrincipal}>
+          {/* Top Header: Título à esquerda e Botão de Ação à direita */}
+          <View style={styles.topoContainer}>
+            <View style={styles.topoTextos}>
+              <Text style={styles.tituloApp}>Produtos do Comerciante</Text>
+              <Text style={styles.subtituloApp}>
+                Controle de catálogo e consulta de itens
+              </Text>
+            </View>
 
-        <View style={styles.acaoCadastro}>
-          <Botao
-            titulo="+ Cadastrar Novo Produto"
-            onPress={handleIrParaCadastro}
-            variante="primary"
+            <TouchableOpacity
+              style={styles.botaoCadastrar}
+              onPress={handleIrParaCadastro}
+              activeOpacity={0.8}
+              accessibilityRole="button"
+              accessibilityLabel="Cadastrar Novo Produto"
+            >
+              <Text style={styles.textoBotaoCadastrar}>+ Cadastrar Novo Produto</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Seção 1: Produtos Ativos */}
+          <SecaoProdutos
+            titulo="Produtos ativos"
+            produtos={produtosAtivos}
+            mensagemVazio="Nenhum produto ativo no momento."
+            onSelecionarProduto={handleSelecionarProduto}
+          />
+
+          {/* Seção 2: Produtos Inativos */}
+          <SecaoProdutos
+            titulo="Produtos inativos"
+            produtos={produtosInativos}
+            mensagemVazio="Nenhum produto inativo no momento."
+            onSelecionarProduto={handleSelecionarProduto}
           />
         </View>
-
-        <SecaoProdutos
-          titulo="Produtos ativos"
-          produtos={produtosAtivos}
-          mensagemVazio="Nenhum produto ativo cadastrado no momento."
-          onSelecionarProduto={handleSelecionarProduto}
-        />
-
-        <SecaoProdutos
-          titulo="Produtos inativos"
-          produtos={produtosInativos}
-          mensagemVazio="Nenhum produto inativo cadastrado no momento."
-          onSelecionarProduto={handleSelecionarProduto}
-        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -71,17 +80,54 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8FAFC',
   },
   scrollContainer: {
-    padding: 16,
-    paddingBottom: 32,
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+    minHeight: '100%',
   },
-  banner: {
-    marginBottom: 16,
+  conteudoPrincipal: {
+    maxWidth: 1200,
+    width: '100%',
+    alignSelf: 'center',
   },
-  bannerSubtitulo: {
-    fontSize: 14,
+  topoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 28,
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  topoTextos: {
+    flex: 1,
+    minWidth: 240,
+  },
+  tituloApp: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#0F172A',
+    letterSpacing: -0.3,
+  },
+  subtituloApp: {
+    fontSize: 13,
     color: '#64748B',
+    marginTop: 6,
   },
-  acaoCadastro: {
-    marginBottom: 24,
+  botaoCadastrar: {
+    backgroundColor: '#2563EB',
+    borderRadius: 8,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#2563EB',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  textoBotaoCadastrar: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '700',
   },
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { Produto } from '../types/produto';
 import { ProdutoCard } from './ProdutoCard';
 
@@ -12,10 +12,10 @@ interface SecaoProdutosProps {
 
 /**
  * Seção de exibição de lista para produtos ativos ou inativos.
- * Atende ao requisito funcional RF3:
- * - Apresenta cabeçalho com o título da seção ("Produtos ativos" ou "Produtos inativos").
- * - Se estiver vazia, exibe mensagem explicativa clara na parte correspondente.
- * - Utiliza a chave estável (produto.id) na renderização dos itens.
+ * Layout alinhado ao design solicitado:
+ * - Cabeçalho com título e badge numérico redondo
+ * - Grid responsivo de cards em linha (flexWrap)
+ * - Estado vazio com borda tracejada e ícone de caixa vazia
  */
 export const SecaoProdutos: React.FC<SecaoProdutosProps> = ({
   titulo,
@@ -34,16 +34,23 @@ export const SecaoProdutos: React.FC<SecaoProdutosProps> = ({
 
       {produtos.length === 0 ? (
         <View style={styles.cardVazio}>
+          <Image
+            source={require('../../assets/images/empty-box.png')}
+            style={styles.iconeCaixaVazia}
+            resizeMode="contain"
+          />
           <Text style={styles.mensagemVazio}>{mensagemVazio}</Text>
         </View>
       ) : (
-        produtos.map((produto) => (
-          <ProdutoCard
-            key={produto.id}
-            produto={produto}
-            onPress={() => onSelecionarProduto(produto.id)}
-          />
-        ))
+        <View style={styles.gridCards}>
+          {produtos.map((produto) => (
+            <ProdutoCard
+              key={produto.id}
+              produto={produto}
+              onPress={() => onSelecionarProduto(produto.id)}
+            />
+          ))}
+        </View>
       )}
     </View>
   );
@@ -51,44 +58,60 @@ export const SecaoProdutos: React.FC<SecaoProdutosProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
+    marginBottom: 32,
   },
   cabecalhoSecao: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 16,
   },
   titulo: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '700',
-    color: '#1E293B',
+    color: '#0F172A',
     marginRight: 8,
   },
   contador: {
-    backgroundColor: '#E2E8F0',
+    backgroundColor: '#F1F5F9',
     borderRadius: 12,
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-  },
-  contadorTexto: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: '#475569',
-  },
-  cardVazio: {
-    backgroundColor: '#F8FAFC',
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-    borderStyle: 'dashed',
-    padding: 20,
+    minWidth: 22,
+    height: 22,
+    paddingHorizontal: 6,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  contadorTexto: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#64748B',
+  },
+  gridCards: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 16,
+  },
+  cardVazio: {
+    width: '100%',
+    backgroundColor: '#FAFCFE',
+    borderRadius: 14,
+    borderWidth: 1.5,
+    borderColor: '#E2E8F0',
+    borderStyle: 'dashed',
+    paddingVertical: 40,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  iconeCaixaVazia: {
+    width: 60,
+    height: 60,
+    opacity: 0.65,
+    marginBottom: 12,
   },
   mensagemVazio: {
     fontSize: 14,
     color: '#64748B',
     textAlign: 'center',
-    fontStyle: 'italic',
+    fontWeight: '500',
   },
 });
