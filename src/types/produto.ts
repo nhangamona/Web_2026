@@ -20,6 +20,12 @@ export interface NovoProdutoInput {
   ativo: boolean;
 }
 
+export interface AtualizarProdutoInput {
+  nome: string;
+  preco: number;
+  ativo?: boolean;
+}
+
 export interface ProdutosContextData {
   /** Lista centralizada de todos os produtos cadastrados */
   produtos: Produto[];
@@ -29,6 +35,10 @@ export interface ProdutosContextData {
   produtosInativos: Produto[];
   /** Adiciona um novo produto de forma imutável à lista */
   adicionarProduto: (dados: NovoProdutoInput) => Produto;
+  /** Atualiza os dados de um produto existente sem mutação direta */
+  atualizarProduto: (id: string, dados: AtualizarProdutoInput) => void;
+  /** Remove um produto da lista de forma imutável */
+  excluirProduto: (id: string) => void;
   /** Alterna a situação de ativo/inativo de um produto pelo id sem mutação */
   alternarSituacaoProduto: (id: string) => void;
   /** Busca um produto pelo identificador */

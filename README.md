@@ -74,17 +74,22 @@ npx tsc --noEmit
 
 ### 3.2 Conferência Funcional (Tabela 2 do Roteiro de Avaliação)
 
-| # | Cenário | Ações Realizadas | Resultado Obtido | Status |
-|---|---|---|---|:---:|
-| **1** | **Partes vazias** | Aplicação inicia sem cadastros prévios. | Exibe mensagens explicativas em ambas as seções: "Nenhum produto ativo cadastrado no momento." e "Nenhum produto inativo cadastrado no momento." | Aprovado |
-| **2** | **Cadastro ativo** | Cadastrado "Arroz 1 kg", preço "7,50", situação Ativo. | Adicionado na seção "Produtos ativos" com preço formatado em R$ 7,50. Redirecionado para tela inicial e formulário limpo. | Aprovado |
-| **3** | **Cadastro inativo** | Cadastrado "Café 250 g", preço "12.90", situação Inativo. | Adicionado exclusivamente na seção "Produtos inativos" com preço formatado em R$ 12,90. | Aprovado |
-| **4** | **Entrada inválida** | Testadas entradas: nome vazio, só espaços, preço vazio, abc, 0, -5, 12abc e 12,345. | Todas as tentativas foram recusadas com mensagens de erro específicas e descritivas junto aos campos. Os valores digitados foram rigorosamente preservados. | Aprovado |
-| **5** | **Desativação** | Acessado "Arroz 1 kg" pelo item da lista; clicado em "Desativar produto". | Situação alterou para "Inativo" e o botão mudou para "Ativar produto", mantendo-se na tela de detalhes. Ao voltar, "Arroz 1 kg" figura exclusivamente em inativos. | Aprovado |
-| **6** | **Reativação** | Acessado "Arroz 1 kg" em inativos; clicado em "Ativar produto". | Retornou para "Produtos ativos". "Café 250 g" permaneceu inalterado em "Produtos inativos". | Aprovado |
-| **7** | **Identidade e navegação** | Cadastrado outro "Arroz" com preço "9". Alternada a situação de apenas um deles. | Ambos mantêm identificadores distintos (id), preços próprios (R$ 7,50 e R$ 9,00) e alternância de situação independente. | Aprovado |
-| **8** | **Id inexistente** | Acessada rota com ID ausente (ex: /produtos/inexistente-123). | Exibida tela com aviso "Produto não encontrado" e botão funcional "Retornar à tela inicial". O app permanece plenamente utilizável. | Aprovado |
-| **9** | **Retorno sem histórico** | Acessada rota dinâmica diretamente sem navegação anterior. | Ação de retorno utiliza tratamento com fallback inteligente, redirecionando com sucesso para a tela inicial. | Aprovado |
+| # | Cenário | Ações Realizadas | Resultado Obtido | Evidência (Captura de Tela) | Status |
+|---|---|---|---|:---:|:---:|
+| **1** | **Partes vazias** | Aplicação inicia sem cadastros prévios. | Exibe mensagens explicativas em ambas as seções: "Nenhum produto ativo cadastrado no momento." e "Nenhum produto inativo cadastrado no momento." | [📸 Ver Captura](docs/evidencias/01_cenario_1_partes_vazias.png) | Aprovado |
+| **2** | **Cadastro ativo** | Cadastrado "Arroz 1 kg", preço "7,50", situação Ativo. | Adicionado na seção "Produtos ativos" com preço formatado em R$ 7,50. Redirecionado para tela inicial e formulário limpo. | [📸 Ver Captura](docs/evidencias/03_cenario_2_cadastro_ativo.png) | Aprovado |
+| **3** | **Cadastro inativo** | Cadastrado "Café 250 g", preço "12.90", situação Inativo. | Adicionado exclusivamente na seção "Produtos inativos" com preço formatado em R$ 12,90. | [📸 Ver Captura](docs/evidencias/04_cenario_3_cadastro_inativo.png) | Aprovado |
+| **4** | **Entrada inválida** | Testadas entradas: nome vazio, só espaços, preço vazio, abc, 0, -5, 12abc e 12,345. | Todas as tentativas foram recusadas com mensagens de erro específicas e descritivas junto aos campos. Os valores digitados foram rigorosamente preservados. | [📸 Ver Captura](docs/evidencias/02_cenario_4_entrada_invalida.png) | Aprovado |
+| **5** | **Desativação** | Acessado "Arroz 1 kg" pelo item da lista; clicado em "Desativar produto". | Situação alterou para "Inativo" e o botão mudou para "Ativar produto", mantendo-se na tela de detalhes. Ao voltar, "Arroz 1 kg" figura exclusivamente em inativos. | [📸 Detalhe](docs/evidencias/05_cenario_5_desativacao_detalhe.png) / [📸 Lista](docs/evidencias/06_cenario_5_desativacao_lista.png) | Aprovado |
+| **6** | **Reativação** | Acessado "Arroz 1 kg" em inativos; clicado em "Ativar produto". | Retornou para "Produtos ativos". "Café 250 g" permaneceu inalterado em "Produtos inativos". | [📸 Detalhe](docs/evidencias/07_cenario_6_reativacao_detalhe.png) / [📸 Lista](docs/evidencias/08_cenario_6_reativacao_lista.png) | Aprovado |
+| **7** | **Identidade e navegação** | Cadastrado outro "Arroz" com preço "9". Alternada a situação de apenas um deles. | Ambos mantêm identificadores distintos (id), preços próprios (R$ 7,50 e R$ 9,00) e alternância de situação independente. | [📸 Ver Captura](docs/evidencias/09_cenario_7_identidade_dois_produtos.png) | Aprovado |
+| **8** | **Id inexistente** | Acessada rota com ID ausente (ex: /produtos/inexistente-123). | Exibida tela com aviso "Produto não encontrado" e botão funcional "Retornar à tela inicial". O app permanece plenamente utilizável. | [📸 Ver Captura](docs/evidencias/10_cenario_8_id_inexistente.png) | Aprovado |
+| **9** | **Retorno sem histórico** | Acessada rota dinâmica diretamente sem navegação anterior. | Ação de retorno utiliza tratamento com fallback inteligente, redirecionando com sucesso para a tela inicial. | [📸 Ver Captura](docs/evidencias/11_cenario_9_retorno_sem_historico.png) | Aprovado |
+
+### 3.3 Demonstração em Vídeo / Animação dos Cenários (Critério de Entrega Opcional)
+Conforme previsto na Seção 5 da avaliação (*"Capturas de tela ou vídeo podem complementar a entrega"*), foi gerada a gravação animada de demonstração contínua da execução dos testes:
+
+![Demonstração Completa dos Cenários](docs/evidencias/demonstracao_completa.gif)
 
 ---
 
@@ -158,6 +163,11 @@ Prova_web/
 │   └── utils/
 │       ├── formatador.ts       # Formatação monetária em padrão brasileiro (R$ 12,50)
 │       └── validador.ts        # Validações estritas de nome e preço (RF2 e Cenário 4)
+├── docs/                       # Documentação complementar de entrega (Seção 5)
+│   ├── sessao_ia.md            # Transcrição completa da sessão de IA (Prompts de entrada e saída)
+│   └── evidencias/             # Capturas de tela e vídeo/animação demonstrativa dos 9 cenários
+│       ├── 01_cenario_1_partes_vazias.png ... 11_cenario_9_retorno_sem_historico.png
+│       └── demonstracao_completa.gif
 ├── assets/                     # Ícones e imagens da aplicação
 ├── app.json                    # Configurações do Expo e Expo Router
 ├── package.json                # Dependências e scripts do projeto

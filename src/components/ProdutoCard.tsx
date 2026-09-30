@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#0F172A',
     marginBottom: 4,
-    textTransform: 'lowercase',
   },
   preco: {
     fontSize: 14,

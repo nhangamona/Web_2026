@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useMemo, useCallback } from 'react';
-import { Produto, NovoProdutoInput, ProdutosContextData } from '../types/produto';
+import { Produto, NovoProdutoInput, AtualizarProdutoInput, ProdutosContextData } from '../types/produto';
 
 /**
  * Contexto compartilhado para gerenciamento de produtos.
@@ -34,6 +34,29 @@ export const ProdutosProvider: React.FC<ProdutosProviderProps> = ({ children }) 
 
     setProdutos((produtosAnteriores) => [...produtosAnteriores, novoProduto]);
     return novoProduto;
+  }, []);
+
+  // Atualização de produto de forma imutável (Editar)
+  const atualizarProduto = useCallback((id: string, dados: AtualizarProdutoInput) => {
+    setProdutos((produtosAnteriores) =>
+      produtosAnteriores.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              nome: dados.nome,
+              preco: dados.preco,
+              ativo: dados.ativo !== undefined ? dados.ativo : item.ativo,
+            }
+          : item
+      )
+    );
+  }, []);
+
+  // Remoção de produto de forma imutável (Excluir)
+  const excluirProduto = useCallback((id: string) => {
+    setProdutos((produtosAnteriores) =>
+      produtosAnteriores.filter((item) => item.id !== id)
+    );
   }, []);
 
   // RF4 & RT2: Alteração da situação (ativo/inativo)
@@ -72,6 +95,8 @@ export const ProdutosProvider: React.FC<ProdutosProviderProps> = ({ children }) 
       produtosAtivos,
       produtosInativos,
       adicionarProduto,
+      atualizarProduto,
+      excluirProduto,
       alternarSituacaoProduto,
       obterProdutoPorId,
     }),
@@ -80,6 +105,8 @@ export const ProdutosProvider: React.FC<ProdutosProviderProps> = ({ children }) 
       produtosAtivos,
       produtosInativos,
       adicionarProduto,
+      atualizarProduto,
+      excluirProduto,
       alternarSituacaoProduto,
       obterProdutoPorId,
     ]
