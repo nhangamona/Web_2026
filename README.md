@@ -1,4 +1,4 @@
-# Avaliação Individual P1 - Desenvolvimento Webmobile
+# P1 - Desenvolvimento Webmobile
 **Universidade Federal do Tocantins (UFT)**  
 **Campus Universitário de Palmas**  
 **Bacharelado em Ciência da Computação**  
@@ -93,7 +93,7 @@ Conforme previsto na Seção 5 da avaliação (*"Capturas de tela ou vídeo pode
 
 ---
 
-## 4. Respostas às Quatro Perguntas (Seção 9 - Explicação Individual)
+## 4 (Seção 9 - Perguntas)
 
 ### Pergunta 1: Onde o provider está montado? Por que essa posição permite compartilhar a lista entre cadastro, tela inicial e detalhe?
 **Resposta:**  
