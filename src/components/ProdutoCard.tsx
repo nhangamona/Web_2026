@@ -10,11 +10,7 @@ interface ProdutoCardProps {
 
 /**
  * Card para exibição de item na lista da tela inicial.
- * Design alinhado com layout moderno em grid:
- * - Ícone miniatura à esquerda
- * - Nome e Preço formatado
- * - Badge com indicador colorido e rótulo textual ("● Ativo" / "● Inativo")
- */
+ **/
 export const ProdutoCard: React.FC<ProdutoCardProps> = ({ produto, onPress }) => {
   return (
     <TouchableOpacity

@@ -10,7 +10,7 @@ export interface ResultadoValidacao<T = unknown> {
 }
 
 /**
- * Valida o nome do produto conforme RF2:
+ * Valida o nome do produto 
  * Deve ter pelo menos um caractere após remover espaços das extremidades.
  */
 export function validarNome(nome: string): ResultadoValidacao<string> {
@@ -28,15 +28,12 @@ export function validarNome(nome: string): ResultadoValidacao<string> {
 }
 
 /**
- * Valida o preço do produto conforme RF2 e Cenário 4:
+ * Valida o preço do produto 
  * - Obrigatório
  * - Numérico
- * - Positivo sem sinal (rejeita -1, -5, -0.00)
+ * - Positivo sem sinal
  * - Separador decimal vírgula ou ponto
- * - Até duas casas decimais (rejeita 12,254 e 12,345)
- * - Rejeita letras ou caracteres estranhos (rejeita abc, 12abc)
- * - Rejeita 0 conforme Cenário 4 da conferência (o preço deve ser maior que zero)
- */
+ **/
 export function validarPreco(precoTexto: string): ResultadoValidacao<number> {
   const texto = precoTexto.trim();
 

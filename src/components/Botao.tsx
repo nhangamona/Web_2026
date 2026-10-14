@@ -15,10 +15,6 @@ interface BotaoProps extends TouchableOpacityProps {
 
 /**
  * Componente de botão reutilizável e acessível.
- * Atende aos requisitos técnicos RT3:
- * - Textos claros nos botões.
- * - Feedback visual de interação e estado desabilitado.
- * - Boas práticas de acessibilidade.
  */
 export const Botao: React.FC<BotaoProps> = ({
   titulo,

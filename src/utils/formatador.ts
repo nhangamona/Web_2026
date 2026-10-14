@@ -1,7 +1,5 @@
 /**
- * Utilitários de formatação de valores monetários.
- * Atende ao requisito funcional RF3:
- * Formata em reais com duas casas decimais e vírgula como separador decimal.
+ * Utilitários de formatação de valores monetários com duas casas decimais e vírgula como separador decimal.
  * Exemplo: R$ 12,50
  */
 

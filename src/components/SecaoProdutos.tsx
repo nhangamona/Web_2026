@@ -12,11 +12,7 @@ interface SecaoProdutosProps {
 
 /**
  * Seção de exibição de lista para produtos ativos ou inativos.
- * Layout alinhado ao design solicitado:
- * - Cabeçalho com título e badge numérico redondo
- * - Grid responsivo de cards em linha (flexWrap)
- * - Estado vazio com borda tracejada e ícone de caixa vazia
- */
+ **/
 export const SecaoProdutos: React.FC<SecaoProdutosProps> = ({
   titulo,
   produtos,

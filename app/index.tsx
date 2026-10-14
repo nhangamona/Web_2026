@@ -7,13 +7,7 @@ import { SecaoProdutos } from '../src/components/SecaoProdutos';
 
 /**
  * Tela Inicial do Aplicativo.
- * Design atualizado fiel ao layout solicitado:
- * - Cabeçalho superior com título e botão "+ Cadastrar Novo Produto" lado a lado
- * - Subtítulo descritivo logo abaixo do título
- * - Seções separadas para "Produtos ativos" e "Produtos inativos"
- * - Grid responsivo de cards com miniatura e badges
- * - Caixa vazia com borda tracejada e ícone ilustrativo
- */
+ **/
 export default function TelaInicial() {
   const router = useRouter();
   const { produtosAtivos, produtosInativos } = useProdutos();
@@ -57,7 +51,7 @@ export default function TelaInicial() {
           <SecaoProdutos
             titulo="Produtos ativos"
             produtos={produtosAtivos}
-            mensagemVazio="Nenhum produto ativo no momento."
+            mensagemVazio="Nenhum produto ativo cadastrado no momento."
             onSelecionarProduto={handleSelecionarProduto}
           />
 
@@ -65,7 +59,7 @@ export default function TelaInicial() {
           <SecaoProdutos
             titulo="Produtos inativos"
             produtos={produtosInativos}
-            mensagemVazio="Nenhum produto inativo no momento."
+            mensagemVazio="Nenhum produto inativo cadastrado no momento."
             onSelecionarProduto={handleSelecionarProduto}
           />
         </View>

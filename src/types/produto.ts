@@ -1,6 +1,6 @@
 /**
  * Definição dos tipos do domínio de Produto e do Contrato do Contexto.
- * Atende aos requisitos funcionais RF1 e técnicos RT2 e RT3.
+
  */
 
 export interface Produto {
